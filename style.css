@@ -67,5 +67,6 @@ nav button{
     color: var(--primary-text-color);
     padding: var(--padding-m) var(--padding-l);
     cursor: pointer;
-    
+    border-radius: var(--border-radius-m);
+
 }
