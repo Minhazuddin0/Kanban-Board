@@ -14,6 +14,7 @@ html{
     --bg-button-color:#1a1a1a;
     --bg-task-color:#2a2a2a;
     --primary-text-color:#f4f4f4;
+    --delete-color:#ff4d4d;
 
     /* padding variables */
 
@@ -94,6 +95,7 @@ section .task-column{
     display: flex;
     flex-direction: column;
     gap: var(--padding-m);
+    border-radius: var(--border-radius-m);
 
 
 }
@@ -112,6 +114,7 @@ section .task-column .task{
     display: flex;
     flex-direction: column;
     gap: var(--padding-s);
+    cursor: grab;
 
 }
 
@@ -122,5 +125,7 @@ section .task-column .task button{
     border-radius: var(--border-radius-s);
     border: none;
     outline: none;
-    
+    background-color: var(--delete-color);
+    color: var(--primary-text-color);
+
 }
