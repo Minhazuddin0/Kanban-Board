@@ -82,10 +82,21 @@ section{
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
-    background-color: #fff;
+    gap: var(--padding-xxl);
     
 }
 
 section .task-column{
-    background-color:  red;
+    background-color: var(--bg-button-color);
+    flex-grow: 1;
+    padding: var(--padding-m);
+
+
+}
+
+section .task-column{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
