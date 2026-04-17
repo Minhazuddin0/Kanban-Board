@@ -49,6 +49,8 @@ addDragEventsOnColumn(done);
 const toggleModalButton = document.querySelector("#toggle-modal");
 const modalBg = document.querySelector(".modal .bg");
 const modal = document.querySelector(".modal");
+const addTaskButton = document.querySelector("#add-new-task")
+
 
 toggleModalButton.addEventListener("click", () => {
     modal.classList.toggle("active");
@@ -57,6 +59,12 @@ toggleModalButton.addEventListener("click", () => {
 modalBg.addEventListener("click", () => {
     modal.classList.remove("active");
 });
+
+addTaskButton.addEventListener("click", () => {
+
+    const taskTitle = document.querySelector("#task-title-input").value
+    const taskDesc = document.querySelector("#task-desc-input").value
+})
 
 
 /* modal related logic */
