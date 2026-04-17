@@ -64,6 +64,25 @@ addTaskButton.addEventListener("click", () => {
 
     const taskTitle = document.querySelector("#task-title-input").value
     const taskDesc = document.querySelector("#task-desc-input").value
+
+    const div = document.createElement("div")
+
+    div.classList.add("task")
+    div.setAttribute("draggable", "true")
+
+    div.innerHTML = `
+        <h2>${taskTitle}</h2>
+        <p>${taskDesc}</p>
+        <button>Delete</button>
+    
+    `
+
+    todo.appendChild(div)
+
+     modal.classList.remove("active")
+
+    
+    
 })
 
 
