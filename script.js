@@ -13,6 +13,7 @@ tasks.forEach(task => {
 })
 
 
+
 function addDragEventsOnColumn(column){
     column.addEventListener("dragenter", (e) => {
         e.preventDefault();
@@ -21,6 +22,16 @@ function addDragEventsOnColumn(column){
     column.addEventListener("dragleave", (e) => {
         e.preventDefault();
         column.classList.remove("hover-over");
+    })
+
+     column.addEventListener("dragover", (e) => {
+        e.preventDefault(); 
+    });
+
+    column.addEventListener("drop", (e) => {
+        e.preventDefault();
+
+        console.log("Dropped", e);
     })
 }
 
