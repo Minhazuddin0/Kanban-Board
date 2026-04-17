@@ -50,8 +50,8 @@ const toggleModalButton = document.querySelector("toggle-modal");
 const modal = document.querySelector(".modal")
 
 toggleModalButton.addEventListener("click", () => {
-    modal.classList.toggle("open")
-})
+    modal.classList.toggle("active")
+}) 
 
 /* modal related logic */
 
