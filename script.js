@@ -8,8 +8,8 @@ const columns = [todo, progress, done];
 
 let dragElement = null;
 
-function addTask(title, desc, column){
-    const div =document.createElement("div")
+function addTask(title, desc, column) {
+    const div = document.createElement("div")
 
     div.classList.add("task")
     div.setAttribute("draggable", "true")
@@ -27,6 +27,10 @@ function addTask(title, desc, column){
     })
 
     return div;
+}
+
+function updateTaskCount() {
+
 }
 
 
@@ -76,29 +80,29 @@ function addDragEventsOnColumn(column) {
     column.addEventListener("drop", (e) => {
         e.preventDefault();
 
-      
+
 
         column.appendChild(dragElement);
         column.classList.remove("hover-over")
 
-        
 
-          columns.forEach(col => {
-        const tasks = col.querySelectorAll(".task");
-        const count = col.querySelector(".right");
 
-        tasksData[ col.id ] = Array.from(tasks).map(t => {
-            return {
-                title: t.querySelector("h2").innerText,
-                desc: t.querySelector("p").innerText
-            }
+        columns.forEach(col => {
+            const tasks = col.querySelectorAll(".task");
+            const count = col.querySelector(".right");
+
+            tasksData[col.id] = Array.from(tasks).map(t => {
+                return {
+                    title: t.querySelector("h2").innerText,
+                    desc: t.querySelector("p").innerText
+                }
+            })
+            localStorage.setItem("tasks", JSON.stringify(tasksData));
+            count.innerText = tasks.length;
         })
-        localStorage.setItem("tasks", JSON.stringify(tasksData));
-        count.innerText = tasks.length;
-    })
-        
-        
-        
+
+
+
     })
 }
 
@@ -127,13 +131,13 @@ addTaskButton.addEventListener("click", () => {
     const taskTitle = document.querySelector("#task-title-input").value
     const taskDesc = document.querySelector("#task-desc-input").value
 
-    addTask(taskTitle,taskDesc, todo);
+    addTask(taskTitle, taskDesc, todo);
 
     columns.forEach(col => {
         const tasks = col.querySelectorAll(".task");
         const count = col.querySelector(".right");
 
-        tasksData[ col.id ] = Array.from(tasks).map(t => {
+        tasksData[col.id] = Array.from(tasks).map(t => {
             return {
                 title: t.querySelector("h2").innerText,
                 desc: t.querySelector("p").innerText
