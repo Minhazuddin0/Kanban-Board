@@ -134,9 +134,14 @@ addTaskButton.addEventListener("click", () => {
     const taskTitle = document.querySelector("#task-title-input").value
     const taskDesc = document.querySelector("#task-desc-input").value
 
+
+    
     addTask(taskTitle, taskDesc, todo);
     updateTaskCount();
     modal.classList.remove("active")
+
+    document.querySelector("#task-title-input").value ="";
+    document.querySelector("#task-desc-input").value ="";
 })
 
 
