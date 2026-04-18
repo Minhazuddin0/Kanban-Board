@@ -30,6 +30,20 @@ function addTask(title, desc, column) {
 }
 
 function updateTaskCount() {
+    columns.forEach(col => {
+        const tasks = col.querySelectorAll(".task");
+        const count = col.querySelector(".right");
+
+        tasksData[col.id] = Array.from(tasks).map(t => {
+            return {
+                title: t.querySelector("h2").innerText,
+                desc: t.querySelector("p").innerText
+            }
+        })
+        localStorage.setItem("tasks", JSON.stringify(tasksData));
+        count.innerText = tasks.length;
+    })
+
 
 }
 
@@ -85,22 +99,7 @@ function addDragEventsOnColumn(column) {
         column.appendChild(dragElement);
         column.classList.remove("hover-over")
 
-
-
-        columns.forEach(col => {
-            const tasks = col.querySelectorAll(".task");
-            const count = col.querySelector(".right");
-
-            tasksData[col.id] = Array.from(tasks).map(t => {
-                return {
-                    title: t.querySelector("h2").innerText,
-                    desc: t.querySelector("p").innerText
-                }
-            })
-            localStorage.setItem("tasks", JSON.stringify(tasksData));
-            count.innerText = tasks.length;
-        })
-
+        updateTaskCount();
 
 
     })
@@ -133,19 +132,7 @@ addTaskButton.addEventListener("click", () => {
 
     addTask(taskTitle, taskDesc, todo);
 
-    columns.forEach(col => {
-        const tasks = col.querySelectorAll(".task");
-        const count = col.querySelector(".right");
-
-        tasksData[col.id] = Array.from(tasks).map(t => {
-            return {
-                title: t.querySelector("h2").innerText,
-                desc: t.querySelector("p").innerText
-            }
-        })
-        localStorage.setItem("tasks", JSON.stringify(tasksData));
-        count.innerText = tasks.length;
-    })
+    updateTaskCount();
 
     div.addEventListener("drag", (e) => {
         dragElement = div;
