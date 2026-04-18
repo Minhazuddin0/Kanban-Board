@@ -39,24 +39,7 @@ if (localStorage.getItem("tasks")) {
     for (const col in data) {
         const column = document.querySelector(`#${col}`);
         data[col].forEach(task => {
-            const div = document.createElement("div")
-
-            div.classList.add("task")
-            div.setAttribute("draggable", "true")
-
-            div.innerHTML = `
-                 <h2>${task.title}</h2>
-                 <p>${task.desc}</p>
-                 <button>Delete</button>
-            `
-            column.appendChild(div)
-
-            div.addEventListener("drag", (e) => {
-                dragElement = div;
-            })
-
-
-            
+            addTask(task.title, task.desc, column);
         })
 
         const tasks = column.querySelectorAll(".task");
@@ -144,23 +127,7 @@ addTaskButton.addEventListener("click", () => {
     const taskTitle = document.querySelector("#task-title-input").value
     const taskDesc = document.querySelector("#task-desc-input").value
 
-    const div = document.createElement("div")
-
-    div.classList.add("task")
-    div.setAttribute("draggable", "true")
-
-    div.innerHTML = `
-        <h2>${taskTitle}</h2>
-        <p>${taskDesc}</p>
-        <button>Delete</button>
-    
-     `
-    todo.appendChild(div)
-
-
-
-
-
+    addTask(taskTitle,taskDesc, todo);
 
     columns.forEach(col => {
         const tasks = col.querySelectorAll(".task");
