@@ -4,7 +4,32 @@ let tasksData = {}
 const todo = document.querySelector('#todo');
 const progress = document.querySelector('#progress');
 const done = document.querySelector('#done');
+const columns = [todo, progress, done];
+
 let dragElement = null;
+
+function addTask(title, desc, column){
+    const div =document.createElement("div")
+
+    div.classList.add("task")
+    div.setAttribute("draggable", "true")
+
+    div.innerHTML = `
+        <h2>${title}</h2>
+        <p>${desc}</p>
+        <button>Delete</button>
+    
+     `
+    column.appendChild(div)
+
+    div.addEventListener("drag", (e) => {
+        dragElement = div;
+    })
+
+    return div;
+}
+
+
 
 if (localStorage.getItem("tasks")) {
     const data = JSON.parse(localStorage.getItem("tasks"));
@@ -31,12 +56,14 @@ if (localStorage.getItem("tasks")) {
             })
 
 
+            
         })
+
+        const tasks = column.querySelectorAll(".task");
+        const count = column.querySelector(".right");
+        count.innerText = tasks.length;
     }
 }
-
-const columns = [todo, progress, done];
-
 
 const tasks = document.querySelectorAll('.task');
 
