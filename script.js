@@ -20,8 +20,8 @@ if (localStorage.getItem("tasks")) {
             div.setAttribute("draggable", "true")
 
             div.innerHTML = `
-                 <h2>${task.Title}</h2>
-                 <p>${task.Desc}</p>
+                 <h2>${task.title}</h2>
+                 <p>${task.desc}</p>
                  <button>Delete</button>
             `
             column.appendChild(div)
@@ -66,17 +66,29 @@ function addDragEventsOnColumn(column) {
     column.addEventListener("drop", (e) => {
         e.preventDefault();
 
-        console.log("dropped", dragElement, column);
+      
 
         column.appendChild(dragElement);
         column.classList.remove("hover-over")
 
-        columns.forEach(col => {
-            const tasks = col.querySelectorAll(".task");
-            const count = col.querySelector(".right");
+        
 
-            count.innerText = tasks.length;
+          columns.forEach(col => {
+        const tasks = col.querySelectorAll(".task");
+        const count = col.querySelector(".right");
+
+        tasksData[ col.id ] = Array.from(tasks).map(t => {
+            return {
+                title: t.querySelector("h2").innerText,
+                desc: t.querySelector("p").innerText
+            }
         })
+        localStorage.setItem("tasks", JSON.stringify(tasksData));
+        count.innerText = tasks.length;
+    })
+        
+        
+        
     })
 }
 
@@ -127,7 +139,7 @@ addTaskButton.addEventListener("click", () => {
         const tasks = col.querySelectorAll(".task");
         const count = col.querySelector(".right");
 
-        tasksData[col.id] = Array.from(tasks).map(t => {
+        tasksData[ col.id ] = Array.from(tasks).map(t => {
             return {
                 title: t.querySelector("h2").innerText,
                 desc: t.querySelector("p").innerText
