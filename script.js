@@ -52,7 +52,6 @@ function updateTaskCount() {
 if (localStorage.getItem("tasks")) {
     const data = JSON.parse(localStorage.getItem("tasks"));
 
-    console.log(data)
 
     for (const col in data) {
         const column = document.querySelector(`#${col}`);
@@ -60,10 +59,9 @@ if (localStorage.getItem("tasks")) {
             addTask(task.title, task.desc, column);
         })
 
-        const tasks = column.querySelectorAll(".task");
-        const count = column.querySelector(".right");
-        count.innerText = tasks.length;
     }
+
+    updateTaskCount();
 }
 
 const tasks = document.querySelectorAll('.task');
